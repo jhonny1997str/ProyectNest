@@ -12,7 +12,7 @@ import { Customer } from './customer/customer.entity';  // <-- Importa Customer 
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: '',
+      password: 'solocali123#',
       database: 'proyect_nest',
       entities: [Customer],  // Ahora 'Customer' está definido correctamente
       synchronize: true,
