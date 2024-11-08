@@ -1,23 +1,26 @@
 /* eslint-disable prettier/prettier */
-// src/app.module.ts
+// Esta línea desactiva la regla de formateo de Prettier para que no haya conflictos de estilo de código con Prettier en este archivo.
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerModule } from './customer/customer.module';
-import { Customer } from './customer/customer.entity';  // <-- Importa Customer aquí
+import { Customer } from './customer/customer.entity';
+import * as dotenv from 'dotenv';
+
+dotenv.config(); // Carga las variables de entorno desde .env
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'solocali123#',
-      database: 'proyect_nest',
-      entities: [Customer],  // Ahora 'Customer' está definido correctamente
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT, 10),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
+      entities: [Customer],
       synchronize: true,
     }),
-    CustomerModule, // Importar CustomerModule aquí
+    CustomerModule,
   ],
 })
 export class AppModule {}
