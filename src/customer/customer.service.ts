@@ -25,7 +25,7 @@ export class CustomerService {
 
   // Obtener un cliente por ID
   async findOne(id: number): Promise<Customer> {
-    return this.customerRepository.findOne({ where: { customerId: id } });
+    return this.customerRepository.findOne({ where: { customer_id: id } });
   }
 
   // Actualizar un cliente
